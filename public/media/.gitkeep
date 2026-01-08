@@ -1,0 +1,13 @@
+// Media folder placeholder - This folder will hold all images, videos, and documents
+// Structure:
+// /public/media/
+//   /images/
+//     - coach-portrait.jpg
+//     - team-photos/
+//     - testimonials/
+//   /videos/
+//     - training-clips/
+//     - testimonials/
+//   /documents/
+//     - guides/
+//     - resources/
