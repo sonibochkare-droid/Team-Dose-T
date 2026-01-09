@@ -61,8 +61,8 @@ export default function Home() {
                   <div className="absolute inset-0 bg-gradient-to-br from-accent/30 via-primary/20 to-blue-300/30 rounded-3xl blur-2xl" />
                   <div className="relative bg-white rounded-3xl overflow-hidden shadow-2xl border-2 border-accent/20">
                     <img
-                      src="/images/prashant-20sir-20-281-29.png"
-                      alt="Sir Prashant Raut - Team Dose-T Coach"
+                      src="/images/prashant-running-action.jpg"
+                      alt="Sir Prashant Raut - Team Dose-T Coach running in Ironman Gurye Korea"
                       className="w-full h-auto object-cover"
                     />
                   </div>
@@ -151,6 +151,72 @@ export default function Home() {
                   <p className="text-muted-foreground">{service.desc}</p>
                 </div>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Gallery Section */}
+        <section className="py-16 sm:py-24 bg-gradient-to-br from-primary/5 via-accent/10 to-yellow-200/5">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-16">
+              <h2 className="section-title mb-4">Gallery & Achievements</h2>
+              <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+                Real moments from our athletes' inspiring journeys and race achievements
+              </p>
+            </div>
+
+            {/* 2025 Gallery */}
+            <div className="mb-20">
+              <div className="flex items-center gap-4 mb-8">
+                <h3 className="text-3xl font-bold text-primary">2025 Achievements</h3>
+                <div className="h-1 flex-grow bg-gradient-to-r from-accent to-transparent rounded-full" />
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25].map(
+                  (num) => (
+                    <div
+                      key={`2025-${num}`}
+                      className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition duration-300"
+                    >
+                      <img
+                        src={`/media/gallery/2025/image-${num}.jpg`}
+                        alt={`Team Dose-T Achievement 2025 - ${num}`}
+                        className="w-full h-80 object-cover group-hover:scale-110 transition duration-300"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex items-end">
+                        <p className="text-white font-semibold p-4">2025 - Achievement {num}</p>
+                      </div>
+                    </div>
+                  ),
+                )}
+              </div>
+            </div>
+
+            {/* 2026 Gallery */}
+            <div>
+              <div className="flex items-center gap-4 mb-8">
+                <h3 className="text-3xl font-bold text-accent">2026 Achievements</h3>
+                <div className="h-1 flex-grow bg-gradient-to-r from-primary to-transparent rounded-full" />
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25].map(
+                  (num) => (
+                    <div
+                      key={`2026-${num}`}
+                      className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition duration-300"
+                    >
+                      <img
+                        src={`/media/gallery/2026/image-${num}.jpg`}
+                        alt={`Team Dose-T Achievement 2026 - ${num}`}
+                        className="w-full h-80 object-cover group-hover:scale-110 transition duration-300"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex items-end">
+                        <p className="text-white font-semibold p-4">2026 - Achievement {num}</p>
+                      </div>
+                    </div>
+                  ),
+                )}
+              </div>
             </div>
           </div>
         </section>

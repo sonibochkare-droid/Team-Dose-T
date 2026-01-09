@@ -1,9 +1,0 @@
-# *
-User-agent: *
-Allow: /
-
-# Host
-Host: https://team-dose-t.netlify.app/
-
-# Sitemaps
-Sitemap: https://team-dose-t.netlify.app/sitemap.xml
