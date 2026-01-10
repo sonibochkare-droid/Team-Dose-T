@@ -29,13 +29,12 @@ export function WallOfGlory() {
   const containerRef = useRef<HTMLDivElement>(null)
   const startXRef = useRef(0)
 
-  // Auto-slide effect
   useEffect(() => {
     if (isHovered) return
 
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % athletes.length)
-    }, 5000) // 5 seconds per slide
+    }, 5000)
 
     return () => clearInterval(interval)
   }, [isHovered])
@@ -59,6 +58,20 @@ export function WallOfGlory() {
     else if (diff < -50) handlePrev()
   }
 
+  const getVisibleCards = () => {
+    if (typeof window === "undefined") return 3
+    return window.innerWidth < 768 ? 1 : 3
+  }
+
+  const [visibleCards, setVisibleCards] = useState(3)
+
+  useEffect(() => {
+    setVisibleCards(getVisibleCards())
+    const handleResize = () => setVisibleCards(getVisibleCards())
+    window.addEventListener("resize", handleResize)
+    return () => window.removeEventListener("resize", handleResize)
+  }, [])
+
   return (
     <section className="py-16 sm:py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -79,45 +92,33 @@ export function WallOfGlory() {
           onTouchStart={handleTouchStart}
           onTouchEnd={handleTouchEnd}
         >
-          {/* Slides */}
           <div
-            className="flex transition-transform duration-500 ease-out"
-            style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+            className="flex transition-transform duration-500 ease-out gap-6"
+            style={{
+              transform: `translateX(-${currentIndex * (100 / visibleCards)}%)`,
+              width: `${100 * (athletes.length / visibleCards)}%`,
+            }}
           >
             {athletes.map((athlete, index) => (
-              <div key={index} className="min-w-full px-4">
-                <div className="bg-gradient-to-br from-primary/5 via-accent/5 to-yellow-200/5 rounded-3xl p-8 sm:p-12 border-2 border-primary/20 hover:border-accent/40 transition">
-                  <div className="max-w-2xl mx-auto">
-                    {/* Athlete Image Placeholder */}
-                    <div className="mb-8 flex justify-center">
-                      <img
-                        src={`/media/wall-of-glory/athlete-${index + 1}.jpg`}
-                        alt={athlete.name}
-                        className="w-48 h-48 rounded-full object-cover shadow-lg border-4 border-primary/20"
-                        onError={(e) => {
-                          // Fallback to gradient circle if image not found
-                          e.currentTarget.style.display = "none"
-                          e.currentTarget.nextElementSibling?.classList.remove("hidden")
-                        }}
-                      />
-                      {/* Fallback gradient placeholder if image missing */}
-                      <div className="w-48 h-48 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center shadow-lg hidden">
-                        <div className="text-white text-6xl font-bold">{athlete.name.charAt(0)}</div>
-                      </div>
-                    </div>
+              <div key={index} className="flex-shrink-0" style={{ width: `${100 / visibleCards}%` }}>
+                <div className="relative h-96 rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition group">
+                  {/* Background Image */}
+                  <img
+                    src={`/media/wall-of-glory/athlete-${index + 1}.jpg`}
+                    alt={athlete.name}
+                    className="absolute inset-0 w-full h-full object-cover"
+                    onError={(e) => {
+                      e.currentTarget.style.opacity = "0"
+                    }}
+                  />
 
-                    {/* Athlete Details */}
-                    <h3 className="text-3xl sm:text-4xl font-bold text-center text-primary mb-4">{athlete.name}</h3>
-                    <p className="text-xl sm:text-2xl text-center text-accent font-semibold mb-8">
-                      {athlete.achievement}
-                    </p>
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary/70 to-accent/60"></div>
 
-                    {/* Achievement Badge */}
-                    <div className="flex justify-center">
-                      <span className="bg-gradient-to-r from-primary to-accent text-white px-6 py-2 rounded-full font-bold text-sm">
-                        ACHIEVEMENT UNLOCKED
-                      </span>
-                    </div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+
+                  <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                    <h3 className="text-xl sm:text-2xl font-bold mb-2 leading-tight">{athlete.name}</h3>
+                    <p className="text-sm sm:text-base text-gray-100 font-medium">{athlete.achievement}</p>
                   </div>
                 </div>
               </div>
