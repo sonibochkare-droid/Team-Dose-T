@@ -2,6 +2,7 @@
 
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
+import { WallOfGlory } from "@/components/wall-of-glory"
 import Link from "next/link"
 import { ArrowRight, Award, Users, TrendingUp, Star } from "lucide-react"
 
@@ -154,6 +155,9 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        {/* Wall of Glory Section */}
+        <WallOfGlory />
 
         {/* Gallery Section */}
         <section className="py-16 sm:py-24 bg-gradient-to-br from-primary/5 via-accent/10 to-yellow-200/5">

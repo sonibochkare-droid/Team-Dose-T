@@ -67,6 +67,16 @@ export function Footer() {
                   Facebook
                 </a>
               </li>
+              <li>
+                <a
+                  href="https://www.youtube.com/@emotionmanagement1857/featured"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-muted-foreground hover:text-accent transition"
+                >
+                  YouTube
+                </a>
+              </li>
             </ul>
           </div>
         </div>
